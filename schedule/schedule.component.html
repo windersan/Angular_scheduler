@@ -1,0 +1,83 @@
+<mat-card>
+
+  <mat-card-content>
+
+    <mat-grid-list cols="5" rowHeight="2:5">
+
+      <h3 mat-subheader>
+        Appointments for {{selectedDate}}
+      </h3>
+
+      <mat-grid-tile>
+        <mat-list>
+          <mat-list-item *ngFor="let appt of selectedDay.appts1">
+            <p mat-line> {{appt.time}} | {{appt.name}} </p>
+            <button mat-icon-button (click)="edit(appt)">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-list>
+          <mat-list-item *ngFor="let appt of selectedDay.appts2">
+            <p mat-line> {{appt.time}} | {{appt.name}} </p>
+            <button mat-icon-button (click)="edit(appt)">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-list>
+          <mat-list-item *ngFor="let appt of selectedDay.appts3">
+            <p mat-line> {{appt.time}} | {{appt.name}} </p>
+            <button mat-icon-button (click)="edit(appt)">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-list>
+          <mat-list-item *ngFor="let appt of selectedDay.appts4">
+            <p mat-line> {{appt.time}} | {{appt.name}} </p>
+            <button mat-icon-button (click)="edit(appt)">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+
+      <mat-grid-tile *ngIf="calendar">
+        <mat-calendar [selected]="selectedDate" (selectedChange)="selectedDate = $event">
+        </mat-calendar>
+        <button mat-raised-button (click)="prntdt()">log</button>
+      </mat-grid-tile>
+
+      <mat-grid-tile *ngIf="!calendar">
+        <form class="name-container" [formGroup]="nameFormGroup" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="standard" [floatLabel]=nameFormGroup.value.floatLabel>
+            <input matInput placeholder=Name formControlName="name">
+          </mat-form-field>
+          <button mat-raised-button type="submit" color="primary">       
+            <mat-icon>check</mat-icon>
+          </button>
+          <button mat-raised-button color="warn" (click)="delete()">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </form>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </mat-card-content>
+
+</mat-card>
